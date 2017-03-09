@@ -10,11 +10,9 @@ cur.execute("drop table Activité")
 cur.execute("drop table Equip_Act")
 """
 
-cur.execute("CREATE TABLE Installation (numero INTEGER PRIMARY KEY, nom TEXT, ville TEXT, latitude REAL, longitude REAL, adresse TEXT, code_postal INTEGER)")
-cur.execute("CREATE TABLE Equipement (id INTEGER PRIMARY KEY, nom TEXT, insNumeroInstall INTEGER,FOREIGN KEY(insNumeroInstall) REFERENCES Installation(numero))")
-cur.execute("CREATE TABLE Activité (code INTEGER, nom TEXT, equipementId INTEGER,FOREIGN KEY(equipementId) REFERENCES Equipement(id),PRIMARY KEY(code,equipementId))")
-
-cur.execute("CREATE TABLE Equip_Act(idEquip INTEGER,codeAct INTEGER,PRIMARY KEY(idEquip,codeAct))")
+cur.execute("CREATE TABLE IF NOT EXISTS Installation (numero INTEGER PRIMARY KEY, nom TEXT, ville TEXT, latitude REAL, longitude REAL, adresse TEXT, code_postal INTEGER)")
+cur.execute("CREATE TABLE IF NOT EXISTS Equipement (id INTEGER PRIMARY KEY, nom TEXT, insNumeroInstall INTEGER,FOREIGN KEY(insNumeroInstall) REFERENCES Installation(numero))")
+cur.execute("CREATE TABLE IF NOT EXISTS Activité (code INTEGER, nom TEXT, equipementId INTEGER,FOREIGN KEY(equipementId) REFERENCES Equipement(id),PRIMARY KEY(code,equipementId))")
 
 conn.commit()
 cur.close()
