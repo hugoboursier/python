@@ -21,7 +21,6 @@ file = open("res/J334_equipements_activites.csv","r")
 test = csv.reader(file)
 
 for row in test:
-    tmp ="vide"
     if row[4]!='' :
         code=int(row[4])
     nom=row[5]
@@ -29,10 +28,8 @@ for row in test:
 
     cur.execute("SELECT * FROM Activité WHERE code = ? and equipementId = ?;", (code,equipementId))
     rows = cur.fetchall();
-    for row in rows:
-        tmp = str(row)
 
-    if(tmp=="vide") :
+    if(len(rows)==0) :
         cur.execute("INSERT INTO Activité(code,nom,equipementId) VALUES(?,?,?);", (code,nom,equipementId))
 
 file = open("res/equipements.csv","r")
