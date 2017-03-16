@@ -27,7 +27,7 @@ for row in test:
     equipementId=int(row[2])
 
     cur.execute("SELECT * FROM Activité WHERE code = ? and equipementId = ?;", (code,equipementId))
-    rows = cur.fetchall();
+    rows = cur.fetchall()
 
     if(len(rows)==0) :
         cur.execute("INSERT INTO Activité(code,nom,equipementId) VALUES(?,?,?);", (code,nom,equipementId))
