@@ -1,0 +1,9 @@
+Lister les installations d'une ville
+Lister les installations où on peut pratiquer une activité donnée
+Suggestion de ville (Na -> Nantes)
+Suggestion d'activité (B -> Basketball, Bowling)
+
+1)Requêtes SQL
+2)Code python
+3)Tests
+4)API Rest
