@@ -10,6 +10,10 @@ def rechercheVille(ville):
     for row in rows:
         print(row)
 
+    if(len(rows)==0):
+        return False
+    else :
+        return True
 """rechercheVille("Nantes")"""
 
 def rechercheActivite(activite):
@@ -18,5 +22,9 @@ def rechercheActivite(activite):
 
     for row in rows:
         print(row)
-
+        
+    if(len(rows)==0):
+        return False
+    else :
+        return True
 """rechercheActivite("Basket-Ball")"""
