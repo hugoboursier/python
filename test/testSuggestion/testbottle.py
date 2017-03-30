@@ -42,8 +42,4 @@ def index():
         communes.append(commune)
     return json.dumps(communes)
 
-@route('/<filepath:path>')
-def server_static(filepath):
-    return static_file(filepath, root='./test/testSuggestion')
-
 run(host='localhost', port=8888)
