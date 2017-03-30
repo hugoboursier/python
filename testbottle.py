@@ -23,7 +23,6 @@ def index(name):
     stre = ""
     for row in rows:
         stre = stre + str(row) + "<br>"
-
     return stre
 
 run(host='localhost', port=8888)

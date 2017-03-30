@@ -5,12 +5,11 @@ import json
 API_KEY = "AIzaSyC4EPbSZDEf-p3ATdkewfw0nVsETDeD5dQ"
 
 try:
-    location = input('Entrez une adresse : ')
-    conn = http.client.HTTPConnection("www.python.org")
-    conn.request("GET", "/index.html")
-    r1 = conn.getresponse()
-    print(r1.status, r1.reason)
+    conn = HTTPSConnection("localhost",3128)
+    conn.set_tunnel("www.example.com",443)
+    conn.send('...etc...')
 
+    """
     urlParams = {'location': location, 'key': API_KEY, 'inFormat':'kvp', 'outFormat':'json'}
     url = "/geocoding/v1/address?" + urlencode(urlParams)
     conn = http.client.HTTPConnection("www.mapquestapi.com")
@@ -23,7 +22,7 @@ try:
     data = res.read()
     jsonData = json.loads(data)
     # FIXME le print n'est pas très secure...
-    print(jsonData['results'][0]['locations'][0]['latLng'])
+    print(jsonData['results'][0]['locations'][0]['latLng'])"""
 except Exception as err:
     print("Unexpected error: {0}".format(err))
 finally:
