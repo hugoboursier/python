@@ -1,4 +1,5 @@
-from lib.bottle import route, run, template
+# coding: utf-8
+from bottle import route, run, template
 import sqlite3
 import json
 
@@ -29,11 +30,11 @@ def index(name):
         lst.append(d)
     return json.dumps(lst)
 
-@route('/recupVilles')
-def index():
+@route('/recupVilles/<nomVille>')
+def index(nomVilles):
     conn = sqlite3.connect('fichierDonnees')
     cur = conn.cursor()
-    cur.execute("SELECT DISTINCT i.ville FROM Installation i")
+    cur.execute("SELECT DISTINCT i.ville FROM Installation i where i.ville = ?",(nomVilles,))
     rows = cur.fetchall()
     communes = []
     for row in rows:
@@ -42,8 +43,21 @@ def index():
         communes.append(commune)
     return json.dumps(communes)
 
-@route('/<filepath:path>')
-def server_static(filepath):
-    return static_file(filepath, root='./test/testSuggestion')
+@route('/recupActivites/<nomAct>')
+def index(nomAct):
+    conn = sqlite3.connect('fichierDonnees')
+    cur = conn.cursor()
+    cur.execute("SELECT DISTINCT a.nom FROM Activité a where a.nom =?",(nomAct,))
+    rows = cur.fetchall()
+    activites = []
+    for row in rows:
+        activite = {}
+        activite['Nom'] = row[0]
+        activites.append(activite)
+    return json.dumps(activites)
 
+"""@route('/<filepath:path>')
+def server_static(filepath):
+    return static_file(filepath, root='./public')
+"""
 run(host='localhost', port=8888)
