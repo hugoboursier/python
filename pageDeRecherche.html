@@ -8,6 +8,22 @@
 </head>
 <body>
 Entrez une commune : <input id="commune" type="text" name="commune">
-<input id="submit" type="button" value="Rechercher">
+<input id="submit" type="button" value="Recherche">
+<table>
+<script>
+var commune = document.getElementById("commune").value;
+$.get("testbottle.py/ville/"+commune, function (response) { 
+  var informations = response;
+  //var informations = "testbottle.py/ville/"+document.getElementById("commune").value;
+	document.getElementById("submit").addOnClickListener(function(commune){
+		for(var info in informations){
+			</script>
+			<tr><td> Nom de l'installation </td></tr>
+			<script>
+		}
+	}
+});
+</script>
+</table>
 </body>
 </html>
