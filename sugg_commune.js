@@ -8,30 +8,22 @@ $(function(){
   $("#commune").autocomplete({
     minLength:3,
     source: function( request, response ) {
-          $.getJSON( "/recupVilles", {
-            ville: extractLast( request.term )
-          }, response );
-        },
-/*function (request, response) {
-	      let url = "/recupVilles";
 	      $.ajax({
-		  url: url,
-		  datatType:'json',
-		  cache:false,
-		  method:'GET',
+		  url: 'http://localhost:8888/recupVilles',
+		  dataType:'jsonp',
 		  success: function (data) {
-		      var transformed = $.map(data, function (element) {
-		          return {
-		                label: element.ville,
-		          };
-		      });
-		      response(transformed);
+			alert('Works');
+		     reponse($.map(data, function (element) {
+			alert(element.Installation);
+		          return element.Installation;
+		      }));
 		  },
-		  error: function (data) {
-		      alert(data);
+		  error: function (jqXHR,textStatus,errorThrown) {
+		      alert(textStatus);
+			alert(errorThrown);
 		      response([]);
 		  }
 	      });
-	    }*/
+	}
   });
 });
