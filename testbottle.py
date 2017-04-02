@@ -30,11 +30,11 @@ def index(name):
         lst.append(d)
     return json.dumps(lst)
 
-@route('/recupVilles/<nomVille>')
-def index(nomVilles):
+@route('/recupVilles')
+def index():
     conn = sqlite3.connect('fichierDonnees')
     cur = conn.cursor()
-    cur.execute("SELECT DISTINCT i.ville FROM Installation i where i.ville = ?",(nomVilles,))
+    cur.execute("SELECT DISTINCT i.ville FROM Installation i")
     rows = cur.fetchall()
     communes = []
     for row in rows:
@@ -43,11 +43,11 @@ def index(nomVilles):
         communes.append(commune)
     return json.dumps(communes)
 
-@route('/recupActivites/<nomAct>')
-def index(nomAct):
+@route('/recupActivites')
+def index():
     conn = sqlite3.connect('fichierDonnees')
     cur = conn.cursor()
-    cur.execute("SELECT DISTINCT a.nom FROM Activité a where a.nom =?",(nomAct,))
+    cur.execute("SELECT DISTINCT a.nom FROM Activité a")
     rows = cur.fetchall()
     activites = []
     for row in rows:
