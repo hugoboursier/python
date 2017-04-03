@@ -1,20 +1,13 @@
 $(function(){
-    function split( val ) {
-      return val.split( /,\s*/ );
-    }
-    function extractLast( term ) {
-      return split( term ).pop();
-    }
   $("#commune").autocomplete({
     minLength:3,
     source: function( request, response ) {
 	      $.ajax({
 		  url: 'http://localhost:8888/recupVilles',
 		  dataType:'jsonp',
+		  type:"GET",
 		  success: function (data) {
-			alert('Works');
 		     reponse($.map(data, function (element) {
-			alert(element.Installation);
 		          return element.Installation;
 		      }));
 		  },
@@ -26,4 +19,31 @@ $(function(){
 	      });
 	}
   });
+	$('#submit').click(function(){
+		var res;
+			$.ajax({
+				url : 'http://localhost:8888/ville/' + $('#commune').val(),
+				dataType:'json',
+				success:function(data){
+					alert(data.Installation);
+					res = data.Installation;
+				},
+				error : function(resultat, statut, erreur){
+					 alert(resultat + statut + erreur);
+
+				},
+			       complete : function(resultat, statut){
+					alert(resultat);
+			       }
+			});
+	    var table = $('#tableau');
+
+	    var tr = document.createElement('tr');
+	    table.append(tr);
+	     
+	    var td = document.createElement('td');
+	    tr.append(td);
+	    var tdText = document.createTextNode(res);
+	    td.append(tdText);
+	});
 });
