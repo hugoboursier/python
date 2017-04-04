@@ -2,6 +2,8 @@ import unittest
 from servicesRest import rechercheVille
 from servicesRest import rechercheActivite
 
+
+"""Fichier de tests unitaires pour le fichier qui servait à essayer les différentes fonctions qui seront dans l'API"""
 class TestRecherche(unittest.TestCase):
 
     def test_rechercheVille(self):
